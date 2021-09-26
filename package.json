@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/theninthsky/frontend-essentials.git#readme",
   "author": "Almog Gabay",
-  "license": "ISC",
+  "license": "MIT",
   "main": "src/index.js",
   "sideEffects": false,
   "scripts": {
