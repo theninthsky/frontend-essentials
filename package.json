@@ -1,0 +1,25 @@
+{
+  "name": "frontend-essentials",
+  "version": "1.0.0",
+  "description": "A set of useful functions, components and hooks.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theninthsky/frontend-essentials.git"
+  },
+  "homepage": "https://github.com/theninthsky/frontend-essentials.git#readme",
+  "author": "Almog Gabay",
+  "license": "ISC",
+  "main": "src/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^0.21.3",
+    "lodash": "^4.17.21",
+    "prop-types": "^15.7.2"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.15.4"
+  }
+}
