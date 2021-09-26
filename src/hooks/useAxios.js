@@ -1,14 +1,14 @@
-import { useState, useLayoutEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { unstable_batchedUpdates as batch } from 'react-dom'
 import axios from 'axios'
 
 const useAxios = ({ suspense, ...initialAxiosOptions }) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(!suspense)
   const [status, setStatus] = useState()
   const [error, setError] = useState()
   const [data, setData] = useState()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!suspense) fetchData()
   }, [suspense]) // eslint-disable-line
 
