@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react'
 import { unstable_batchedUpdates as batch } from 'react-dom'
 import axios from 'axios'
 
-const useAxios = ({ suspense, ...initialAxiosOptions }, initialCallback) => {
+const useAxios = ({ suspense, onSuccess: initialOnSuccess, onError: initialOnError, ...initialAxiosOptions }) => {
   const [loading, setLoading] = useState(!suspense)
   const [status, setStatus] = useState()
   const [error, setError] = useState()
   const [data, setData] = useState()
 
   useEffect(() => {
-    if (!suspense) fetchData({}, initialCallback)
+    if (!suspense) fetchData({ onSuccess: initialOnSuccess, onError: initialOnError })
   }, [suspense]) // eslint-disable-line
 
-  const fetchData = async (axiosOptions = {}, callback) => {
+  const fetchData = async ({ onSuccess, onError, ...axiosOptions } = {}) => {
     setLoading(true)
     setStatus()
     setError()
@@ -27,13 +27,15 @@ const useAxios = ({ suspense, ...initialAxiosOptions }, initialCallback) => {
         setData(data)
       })
 
-      callback?.({ status, data })
+      onSuccess?.({ status, data })
     } catch (err) {
       batch(() => {
         setLoading(false)
         setStatus(err.response.status)
         setError(err)
       })
+
+      onError?.({ status, error, data })
     }
   }
 

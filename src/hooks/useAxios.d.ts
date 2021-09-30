@@ -1,14 +1,17 @@
 import type { AxiosRequestConfig, AxiosError } from 'axios'
 
-declare function useAxios(
-  config: AxiosRequestConfig & { suspense?: boolean },
-  callback?: (response: { status: number; data: any }) => void
-): {
+type RequestConfig = AxiosRequestConfig & {
+  suspense?: boolean
+  onSuccess?: (res: { status: number; data?: any }) => void
+  onError?: (res: { status: number; error: AxiosError; data?: any }) => void
+}
+
+declare function useAxios(config: RequestConfig): {
   loading: boolean
   status?: number
   error?: AxiosError
   data?: any
-  activate: (config?: AxiosRequestConfig, callback?: (response: { status: number; data: any }) => void) => Promise<void>
+  activate: (config?: RequestConfig) => Promise<void>
 }
 
 export default useAxios
