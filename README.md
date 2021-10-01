@@ -35,11 +35,20 @@ When an array is passed to `query`, queries will have an `OR` relationship when 
 
 Handles async requests easily:
 
-    const { loading, status, error, data, activate } = useAxios({ method: 'get', url: 'https://example.com/v1/items' })
+    const { loading, status, error, data, activate } = useAxios({
+        method: 'get',
+        url: 'https://example.com/v1/items',
+        onSuccess: ({ data }) => console.log(data)
+    })
 
 Initial request can be skipped and triggered manually:
 
-    const { loading, status, error, data, activate } = useAxios({ suspense: true, method: 'get', url: 'https://example.com/v1/items' })
+    const { loading, status, error, data, activate } = useAxios({
+        method: 'get',
+        url: 'https://example.com/v1/items',
+        suspense: true,
+        onError: ({ error }) => console.error(error)
+    })
 
     setTimeout(activate, 3000)
 
