@@ -1,9 +1,9 @@
 import type { AxiosRequestConfig, AxiosError } from 'axios'
 
 type RequestConfig = AxiosRequestConfig & {
-  suspense?: boolean
+  manual?: boolean
   onSuccess?: (res: { status: number; data?: any }) => void
-  onError?: (res: { status: number; error: AxiosError; data?: any }) => void
+  onError?: (res: { status?: number; error: AxiosError | Error; data?: any }) => void
 }
 
 declare function useAxios(config: RequestConfig): {

@@ -46,11 +46,17 @@ Initial request can be skipped and triggered manually:
     const { loading, status, error, data, activate } = useAxios({
         method: 'get',
         url: 'https://example.com/v1/items',
-        suspense: true,
+        manual: true,
         onError: ({ error }) => console.error(error)
     })
 
     setTimeout(activate, 3000)
+
+Get axios instance:
+
+    import { axios } from 'frontend-essentials'
+
+    axios.defaults.withCredentials = true
 
 ## useProgressiveImage
 
