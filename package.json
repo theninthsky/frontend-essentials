@@ -1,6 +1,6 @@
 {
   "name": "frontend-essentials",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A set of useful functions, components and hooks.",
   "repository": {
     "type": "git",
@@ -9,7 +9,9 @@
   "homepage": "https://github.com/theninthsky/frontend-essentials.git#readme",
   "author": "Almog Gabay",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "sideEffects": false,
   "scripts": {
