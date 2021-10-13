@@ -9,10 +9,12 @@
   "homepage": "https://github.com/theninthsky/frontend-essentials.git#readme",
   "author": "Almog Gabay",
   "license": "MIT",
-  "main": "src/index.js",
+  "files": ["dist"],
+  "main": "dist/index.js",
   "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npx babel src --out-dir dist"
   },
   "dependencies": {
     "axios": "^0.21.3",
@@ -20,6 +22,10 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.15.4"
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/runtime": "^7.15.4",
+    "browserslist": "^4.17.3"
   }
 }
