@@ -16,7 +16,7 @@
   "sideEffects": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublishOnly": "npx babel src --out-dir dist"
+    "prepublishOnly": "./prepublish.sh"
   },
   "dependencies": {
     "axios": "^0.21.3",
