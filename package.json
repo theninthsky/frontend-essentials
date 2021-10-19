@@ -30,7 +30,6 @@
     "@babel/cli": "^7.15.7",
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
-    "@babel/runtime": "^7.15.4",
-    "browserslist": "^4.17.3"
+    "@babel/runtime": "^7.15.4"
   }
 }

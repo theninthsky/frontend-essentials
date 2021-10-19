@@ -1,5 +1,0 @@
-[cjs]
-defaults
-
-[esm]
-defaults and supports es6-module
