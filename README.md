@@ -14,6 +14,21 @@ Do:
         <UserModal />
     </If>
 
+## LazyRender
+
+Lazily renders a large list of items:
+
+    <LazyRender items={notes} batch={20}>
+        {({ _id, title, content, date }) => (
+            <Note
+                key={_id}
+                title={title}
+                content={content}
+                date={date}
+            />
+        )}
+    </LazyRender>
+
 ## Media
 
 Conditionally renders a component when certain media queries are matched:
