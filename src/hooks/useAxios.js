@@ -27,22 +27,22 @@ const useAxios = ({ manual, onSuccess: initialOnSuccess, onError: initialOnError
       })
 
       batch(() => {
-        setLoading(false)
         setStatus(status)
         setData(data)
       })
 
       onSuccess?.({ status, data })
+        setLoading(false)
     } catch (error) {
       const status = error.response?.status
 
       batch(() => {
-        setLoading(false)
         setStatus(status)
         setError(error)
       })
 
       onError?.({ status, error })
+        setLoading(false)
     }
   }
 
