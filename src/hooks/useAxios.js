@@ -25,24 +25,20 @@ const useAxios = ({ manual, onSuccess: initialOnSuccess, onError: initialOnError
         ...initialAxiosOptions,
         ...axiosOptions
       })
-
-      batch(() => {
+      onSuccess?.({ status, data })
+         batch(() => {
         setLoading(false)
         setStatus(status)
         setData(data)
       })
-
-      onSuccess?.({ status, data })
     } catch (error) {
       const status = error.response?.status
-
-      batch(() => {
+      onError?.({ status, error })
+        batch(() => {
         setLoading(false)
         setStatus(status)
         setError(error)
       })
-
-      onError?.({ status, error })
     }
   }
 
