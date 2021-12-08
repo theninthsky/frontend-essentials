@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { unstable_batchedUpdates as batch } from 'react-dom'
 import Axios from 'axios'
 
@@ -14,37 +14,40 @@ const useAxios = ({ manual, onSuccess: initialOnSuccess, onError: initialOnError
     if (!manual) fetchData()
   }, [manual]) // eslint-disable-line
 
-  const fetchData = async ({ onSuccess = initialOnSuccess, onError = initialOnError, ...axiosOptions } = {}) => {
-    setLoading(true)
-    setStatus()
-    setError()
-    setData()
+  const fetchData = useCallback(
+    async ({ onSuccess = initialOnSuccess, onError = initialOnError, ...axiosOptions } = {}) => {
+      setLoading(true)
+      setStatus()
+      setError()
+      setData()
 
-    try {
-      const { status, data } = await Axios({
-        ...initialAxiosOptions,
-        ...axiosOptions
-      })
+      try {
+        const { status, data } = await Axios({
+          ...initialAxiosOptions,
+          ...axiosOptions
+        })
 
-      onSuccess?.({ status, data })
+        onSuccess?.({ status, data })
 
-      batch(() => {
-        setLoading(false)
-        setStatus(status)
-        setData(data)
-      })
-    } catch (error) {
-      const status = error.response?.status
+        batch(() => {
+          setLoading(false)
+          setStatus(status)
+          setData(data)
+        })
+      } catch (error) {
+        const status = error.response?.status
 
-      onError?.({ status, error })
+        onError?.({ status, error })
 
-      batch(() => {
-        setLoading(false)
-        setStatus(status)
-        setError(error)
-      })
-    }
-  }
+        batch(() => {
+          setLoading(false)
+          setStatus(status)
+          setError(error)
+        })
+      }
+    },
+    []
+  )
 
   return { loading, status, error, data, activate: fetchData }
 }
