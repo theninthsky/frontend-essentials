@@ -2,8 +2,5 @@
 
 rm cjs esm -rf
 
-npx babel src --out-dir cjs
-ESM=true npx babel src --out-dir esm
-
-cp src/hooks/*.d.ts cjs/hooks
-cp src/hooks/*.d.ts esm/hooks
+npx tsc --module commonjs --target es5 --outdir cjs
+npx tsc --module es2015 --target es2015 --outdir esm
