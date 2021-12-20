@@ -23,7 +23,7 @@ type Response = {
 
 const useAxios = ({
   manual,
-  camelCasedKeys,
+  camelCasedKeys: initialCamelCasedKeys,
   onSuccess: initialOnSuccess,
   onError: initialOnError,
   ...initialAxiosOptions
@@ -35,10 +35,15 @@ const useAxios = ({
 
   useEffect(() => {
     if (!manual) fetchData()
-  }, [manual]) // eslint-disable-line
+  }, [manual])
 
   const fetchData = useCallback(
-    async ({ onSuccess = initialOnSuccess, onError = initialOnError, ...axiosOptions } = {}) => {
+    async ({
+      camelCasedKeys = initialCamelCasedKeys,
+      onSuccess = initialOnSuccess,
+      onError = initialOnError,
+      ...axiosOptions
+    } = {}) => {
       setLoading(true)
       setStatus(undefined)
       setError(undefined)
