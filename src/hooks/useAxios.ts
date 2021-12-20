@@ -2,10 +2,13 @@ import { useState, useEffect, useCallback } from 'react'
 import { unstable_batchedUpdates as batch } from 'react-dom'
 import Axios, { AxiosRequestConfig, AxiosError } from 'axios'
 
+import toCamelCasedKeys from '../utils/camel-cased-keys'
+
 export const axios = Axios
 
 type RequestConfig = AxiosRequestConfig & {
   manual?: boolean
+  camelCasedKeys?: boolean
   onSuccess?: (res: { status: number; data?: any }) => void
   onError?: (res: { status?: number; error: AxiosError | Error; data?: any }) => void
 }
@@ -20,6 +23,7 @@ type Response = {
 
 const useAxios = ({
   manual,
+  camelCasedKeys,
   onSuccess: initialOnSuccess,
   onError: initialOnError,
   ...initialAxiosOptions
@@ -46,12 +50,12 @@ const useAxios = ({
           ...axiosOptions
         })
 
-        onSuccess?.({ status, data })
+        onSuccess?.({ status, data: camelCasedKeys ? toCamelCasedKeys(data) : data })
 
         batch(() => {
           setLoading(false)
           setStatus(status)
-          setData(data)
+          setData(camelCasedKeys ? toCamelCasedKeys(data) : data)
         })
       } catch (error: any) {
         const status = error.response?.status

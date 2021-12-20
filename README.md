@@ -67,6 +67,15 @@ Initial request can be skipped and triggered manually:
 
     setTimeout(activate, 3000)
 
+Response data keys can be transformed into camelCase:
+
+    const { loading, status, error, data, activate } = useAxios({
+        method: 'get',
+        url: 'https://example.com/v1/items',
+        camelCasedKeys: true,
+        onSuccess: ({ data }) => console.log(data)
+    })
+
 Get axios instance:
 
     import { axios } from 'frontend-essentials'
@@ -97,3 +106,19 @@ Returns a viewport object containing boolean matches for each passed media query
     }
 
     return <div>{getDescription()}</div>
+
+# Functions
+
+## persistState and getPersistedState
+
+Allows you to keep your current state when unmounting:
+
+    const [posts, setPosts] = useState(getPersistedState('posts'))
+
+    useEffect(() => {
+        persistState('posts', posts)
+    }, [posts])
+
+State can also be saved to localStorage:
+
+    persistState('posts', posts, { localStorage: true })
