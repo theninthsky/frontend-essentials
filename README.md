@@ -82,19 +82,11 @@ Get axios instance:
 
     axios.defaults.withCredentials = true
 
-## useProgressiveImage
+## useMedia
 
-Returns a low quality image source until a higher resolution image is fetched:
+Returns a media queries object containing boolean matches for each passed query:
 
-    const [src, blur] = useProgressiveImage(lowQualitySrc, highQualitySrc)
-
-    return <img style={{filter: blur ? 'blur(20px)' : 'none'}} src={src} />
-
-## useViewport
-
-Returns a viewport object containing boolean matches for each passed media query:
-
-    const { mobile, tablet } = useViewport({
+    const { mobile, tablet } = useMedia({
         mobile: '(max-width: 480px)',
         tablet: '(min-width: 481px) and (max-width: 1199px)'
     })
@@ -106,6 +98,14 @@ Returns a viewport object containing boolean matches for each passed media query
     }
 
     return <div>{getDescription()}</div>
+
+## useProgressiveImage
+
+Returns a low quality image source until a higher resolution image is fetched:
+
+    const [src, blur] = useProgressiveImage(lowQualitySrc, highQualitySrc)
+
+    return <img style={{filter: blur ? 'blur(20px)' : 'none'}} src={src} />
 
 # Functions
 

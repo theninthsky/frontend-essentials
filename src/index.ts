@@ -4,7 +4,7 @@ export { default as Media } from './components/Media'
 
 export { default as useAxios, axios } from './hooks/useAxios'
 export { default as useProgressiveImage } from './hooks/useProgressiveImage'
-export { default as useViewport } from './hooks/useViewport'
+export { default as useMedia } from './hooks/useMedia'
 
 export { default as camelCasedKeys } from './utils/camel-cased-keys'
 export * from './utils/persistence'
