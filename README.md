@@ -109,6 +109,14 @@ Returns a low quality image source until a higher resolution image is fetched:
 
 # Functions
 
+## lazyPrefetch
+
+Prefetches a lazily loaded module.
+
+    const Login = lazyPrefetch(() => import('pages/Login'))
+
+Note: prefetch occurs 500ms after the 'load' event is fired.
+
 ## persistState and getPersistedState
 
 Allows you to keep your current state when unmounting:

@@ -7,4 +7,5 @@ export { default as useProgressiveImage } from './hooks/useProgressiveImage'
 export { default as useMedia } from './hooks/useMedia'
 
 export { default as camelCasedKeys } from './utils/camel-cased-keys'
+export { default as lazyPrefetch } from './utils/lazy-prefetch'
 export * from './utils/persistence'
