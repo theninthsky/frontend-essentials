@@ -1,4 +1,4 @@
-import { useState, useEffect, FC } from 'react'
+import { useState, useLayoutEffect, FC } from 'react'
 
 type Props = {
   query: string | string[]
@@ -9,7 +9,7 @@ type Props = {
 const Media: FC<Props> = ({ query, invert, children }) => {
   const [matches, setMatches] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       if (Array.isArray(query)) return setMatches(query.some(q => window.matchMedia(q).matches))
 
