@@ -82,6 +82,22 @@ Get axios instance:
 
     axios.defaults.withCredentials = true
 
+## useDelayedNavigate
+
+Delays React Router's navigation until the target component is rendered:
+
+    const navigate = useDelayedNavigate()
+
+    <NavLink
+        to='home'
+        onClick={event => {
+        event.preventDefault()
+        navigate('home')
+        }}
+    >
+        Home
+    </NavLink>
+
 ## useMedia
 
 Returns a media queries object containing boolean matches for each passed query:
@@ -115,7 +131,7 @@ Prefetches a lazily loaded module.
 
     const Login = lazyPrefetch(() => import('pages/Login'))
 
-Note: prefetch occurs 500ms after the 'load' event is fired.
+Note: prefetch occurs 200ms after the 'load' event is fired.
 
 ## persistState and getPersistedState
 
