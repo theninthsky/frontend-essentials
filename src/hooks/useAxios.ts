@@ -8,6 +8,7 @@ export const axios = Axios
 
 export type UseAxiosRequestConfig = AxiosRequestConfig & {
   manual?: boolean
+  keepPreviousData?: boolean
   camelCasedKeys?: boolean
   onSuccess?: (res: { status: number; data?: any }) => void
   onError?: (res: { status?: number; error: AxiosError | Error; data?: any }) => void
@@ -23,6 +24,7 @@ export type UseAxiosResponse = {
 
 const useAxios = ({
   manual,
+  keepPreviousData,
   camelCasedKeys: initialCamelCasedKeys,
   onSuccess: initialOnSuccess,
   onError: initialOnError,
@@ -47,7 +49,7 @@ const useAxios = ({
       setLoading(true)
       setStatus(undefined)
       setError(undefined)
-      setData(undefined)
+      if (!keepPreviousData) setData(undefined)
 
       try {
         const { status, data } = await Axios({
