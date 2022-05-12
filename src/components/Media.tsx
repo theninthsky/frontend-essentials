@@ -1,12 +1,12 @@
 import { useState, useLayoutEffect, FC } from 'react'
 
-type Props = {
+export type MediaProps = {
   query: string | string[]
   invert?: boolean
   children: any
 }
 
-const Media: FC<Props> = ({ query, invert, children }) => {
+const Media: FC<MediaProps> = ({ query, invert, children }) => {
   const [matches, setMatches] = useState(false)
 
   useLayoutEffect(() => {

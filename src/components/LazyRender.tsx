@@ -8,7 +8,7 @@ const DefaultIntersector = ({ forwardedRef, ...otherProps }: DefaultIntersectorP
   <div ref={forwardedRef} {...otherProps}></div>
 )
 
-type Props = {
+export type LazyRenderProps = {
   items: any[]
   batch: number
   rootMargin?: string
@@ -16,7 +16,7 @@ type Props = {
   children: any
 }
 
-const LazyRender: FC<Props> = ({ items, batch, rootMargin, Intersector = DefaultIntersector, children }) => {
+const LazyRender: FC<LazyRenderProps> = ({ items, batch, rootMargin, Intersector = DefaultIntersector, children }) => {
   const [renderLimit, setRenderLimit] = useState(Math.min(batch, items.length))
   const [renderedItems, setRenderedItems] = useState([])
 

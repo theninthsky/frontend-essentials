@@ -6,19 +6,19 @@ import toCamelCasedKeys from '../utils/camel-cased-keys'
 
 export const axios = Axios
 
-type RequestConfig = AxiosRequestConfig & {
+export type UseAxiosRequestConfig = AxiosRequestConfig & {
   manual?: boolean
   camelCasedKeys?: boolean
   onSuccess?: (res: { status: number; data?: any }) => void
   onError?: (res: { status?: number; error: AxiosError | Error; data?: any }) => void
 }
 
-type Response = {
+export type UseAxiosResponse = {
   loading: boolean
   status?: number
   error?: any
   data?: any
-  activate: (config?: RequestConfig) => Promise<void>
+  activate: (config?: UseAxiosRequestConfig) => Promise<void>
 }
 
 const useAxios = ({
@@ -27,7 +27,7 @@ const useAxios = ({
   onSuccess: initialOnSuccess,
   onError: initialOnError,
   ...initialAxiosOptions
-}: RequestConfig): Response => {
+}: UseAxiosRequestConfig): UseAxiosResponse => {
   const [loading, setLoading] = useState(!manual)
   const [status, setStatus] = useState<number | undefined>()
   const [error, setError] = useState<number | undefined>()

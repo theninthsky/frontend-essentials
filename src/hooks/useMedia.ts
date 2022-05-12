@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react'
 import isEqual from 'lodash/isEqual'
 
-type QueriesMap = {
-  [index: string]: string
-}
-
 type Queries = {
   [index: string]: boolean
 }
@@ -17,6 +13,10 @@ const getQueries = (queriesMap: QueriesMap) => {
   }
 
   return queries
+}
+
+export type QueriesMap = {
+  [index: string]: string
 }
 
 const useMedia = (queriesMap: QueriesMap) => {

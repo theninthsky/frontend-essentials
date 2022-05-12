@@ -2,7 +2,7 @@ type State = {
   [x: string]: any
 }
 
-type PersistStateOptions = {
+export type PersistStateOptions = {
   localStorage?: boolean
 }
 

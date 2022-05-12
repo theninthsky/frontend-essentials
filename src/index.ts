@@ -1,10 +1,10 @@
-export { default as If } from './components/If'
-export { default as LazyRender } from './components/LazyRender'
-export { default as Media } from './components/Media'
+export { default as If, IfProps } from './components/If'
+export { default as LazyRender, LazyRenderProps } from './components/LazyRender'
+export { default as Media, MediaProps } from './components/Media'
 
-export { default as useAxios, axios } from './hooks/useAxios'
+export { default as useAxios, axios, UseAxiosRequestConfig, UseAxiosResponse } from './hooks/useAxios'
 export { default as useDelayedNavigate } from './hooks/useDelayedNavigate'
-export { default as useMedia } from './hooks/useMedia'
+export { default as useMedia, QueriesMap } from './hooks/useMedia'
 export { default as useProgressiveImage } from './hooks/useProgressiveImage'
 
 export { default as camelCasedKeys } from './utils/camel-cased-keys'
