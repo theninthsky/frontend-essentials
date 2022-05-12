@@ -25,7 +25,7 @@ export type UseAxiosResponse = {
 const useAxios = ({
   manual,
   keepPreviousData,
-  camelCasedKeys: initialCamelCasedKeys,
+  camelCasedKeys,
   onSuccess: initialOnSuccess,
   onError: initialOnError,
   ...initialAxiosOptions
@@ -40,12 +40,7 @@ const useAxios = ({
   }, [manual])
 
   const fetchData = useCallback(
-    async ({
-      camelCasedKeys = initialCamelCasedKeys,
-      onSuccess = initialOnSuccess,
-      onError = initialOnError,
-      ...axiosOptions
-    } = {}) => {
+    async ({ onSuccess = initialOnSuccess, onError = initialOnError, ...axiosOptions } = {}) => {
       setLoading(true)
       setStatus(undefined)
       setError(undefined)
