@@ -1,10 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { unstable_batchedUpdates as batch } from 'react-dom'
-import Axios, { AxiosRequestConfig, AxiosError } from 'axios'
+import axios, { AxiosRequestConfig, AxiosError } from 'axios'
 
 import toCamelCasedKeys from '../utils/camel-cased-keys'
-
-export const axios = Axios
 
 export type UseAxiosRequestConfig = AxiosRequestConfig & {
   manual?: boolean
@@ -47,7 +45,7 @@ const useAxios = ({
       if (!keepPreviousData) setData(undefined)
 
       try {
-        const { status, data } = await Axios({
+        const { status, data } = await axios({
           ...initialAxiosOptions,
           ...axiosOptions
         })
@@ -77,4 +75,4 @@ const useAxios = ({
   return { loading, status, error, data, activate: fetchData }
 }
 
-export default useAxios
+export { useAxios as default, axios }
