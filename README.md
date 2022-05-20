@@ -98,6 +98,17 @@ Delays React Router's navigation until the target component is rendered:
         Home
     </NavLink>
 
+## useFetch
+
+Similar to useAxios but with native fetch's API:
+
+    const { loading, response, status, error, data, activate } = useFetch(
+        'https://example.com/v1/items', {
+            mode: 'no-cors',
+            onSuccess: ({ data }) => console.log(data)
+        }
+    )
+
 ## useMedia
 
 Returns a media queries object containing boolean matches for each passed query:
