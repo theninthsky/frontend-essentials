@@ -57,9 +57,9 @@ const useFetch = (
       if (!res.ok) throw res
 
       const json = res.headers.get('content-type')?.includes('application/json')
-      const data = json ? await res.json() : undefined
+      const data = json ? await res.json() : await res.text()
 
-      onSuccess?.({ response: res, status: res.status, data: camelCasedKeys ? toCamelCasedKeys(data) : data })
+      onSuccess?.({ response: res, status: res.status, data: json && camelCasedKeys ? toCamelCasedKeys(data) : data })
 
       batch(() => {
         setLoading(false)
