@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useCallback, useLayoutEffect } from 'react'
 import { unstable_batchedUpdates as batch } from 'react-dom'
 
 import toCamelCasedKeys from '../utils/camel-cased-keys'
@@ -37,7 +37,9 @@ const useFetch = (
   const [error, setError] = useState<string | undefined>()
   const [data, setData] = useState<number | undefined>()
 
-  const initialRender = useRef(true)
+  useLayoutEffect(() => {
+    if (!manual) fetchData()
+  }, [manual])
 
   const fetchData = useCallback(async ({ onSuccess = initialOnSuccess, onError = initialOnError, ...options } = {}) => {
     setLoading(true)
@@ -78,12 +80,6 @@ const useFetch = (
       })
     }
   }, [])
-
-  if (initialRender.current) {
-    initialRender.current = false
-
-    if (!manual) fetchData()
-  }
 
   return { loading, response, status, error, data, activate: fetchData }
 }

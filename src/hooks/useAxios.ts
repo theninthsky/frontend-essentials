@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useCallback, useLayoutEffect } from 'react'
 import { unstable_batchedUpdates as batch } from 'react-dom'
 import axios, { AxiosRequestConfig, AxiosError } from 'axios'
 
@@ -33,7 +33,9 @@ const useAxios = ({
   const [error, setError] = useState<number | undefined>()
   const [data, setData] = useState<number | undefined>()
 
-  const initialRender = useRef(true)
+  useLayoutEffect(() => {
+    if (!manual) fetchData()
+  }, [manual])
 
   const fetchData = useCallback(
     async ({ onSuccess = initialOnSuccess, onError = initialOnError, ...axiosOptions } = {}) => {
@@ -69,12 +71,6 @@ const useAxios = ({
     },
     []
   )
-
-  if (initialRender.current) {
-    initialRender.current = false
-
-    if (!manual) fetchData()
-  }
 
   return { loading, status, error, data, activate: fetchData }
 }
